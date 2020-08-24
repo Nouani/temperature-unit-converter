@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     EditText edtCelsius;
+    TextView tvMessageError;
     Button btnConvert;
 
     @Override
@@ -23,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
         this.edtCelsius = (EditText) findViewById(R.id.edtCelsius);
         this.btnConvert = (Button) findViewById(R.id.btnConvert);
+        this.tvMessageError = (TextView) findViewById(R.id.tvErrorMessage);
 
         this.btnConvert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tvMessageError.setText("");
                 if (validateTemperature()) {
                     UnitTemperature degreesCelsius = new UnitTemperature(Double.parseDouble(edtCelsius.getText().toString().trim()));
                     double fahrenheit = degreesCelsius.toFahrenheit();
@@ -52,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
         String temperatureCelsius = edtCelsius.getText().toString().trim();
 
         if (temperatureCelsius.isEmpty()) {
-            edtCelsius.setError("Campo vazio");
+            edtCelsius.setError("Empty field");
+            tvMessageError.setText("Fill in the field");
 
             return false;
         } else {

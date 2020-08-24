@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Temperature Converter</string>
-    <string name="celsius_temperature">Enter temperature in degrees celsius</string>
+    <string name="celsius_temperature">Enter temperature</string>
 </resources>
